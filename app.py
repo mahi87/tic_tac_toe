@@ -19,7 +19,7 @@ def rotate_turns(player):
 
 board = Board()
 current_player = player2
-while(board.has_got_winner() or board.is_full()):
+while(not board.has_got_winner() or not board.is_full()):
     current_player = rotate_turns(current_player)
     board.print_board()
         
