@@ -25,17 +25,6 @@ class Board:
         if (not self.board[1][1] == None) and (self.board[0][0] == self.board[1][1] == self.board[2][2] or self.board[2][0] == self.board[1][1] == self.board[0][2]):
             return True
         return False
-            
-        
-    def check_board(self):
-        # return true or false based on
-        # either board is full
-        # one of them won
-            # three in a row/column/diagonal is same
-        if self.has_got_winner() or self.is_full():
-            return False
-                
-        return True
         
     def print_board(self):
         for i in range(3):

@@ -1,4 +1,5 @@
 from board import Board
+from player import Player
 
 #let user select 'o' or 'x'
 o = input('Enter name for player "o": ')
@@ -8,25 +9,24 @@ x = input('Enter name for player "x": ')
 if o == x:
     raise ValueError('Name of both the players should not be same')
 
-def rotate_turns(player, sign):
-    if sign == 'o':
-        sign = 'x'
-        player = x
-    else:
-        sign = 'o'
-        player = o
-    return sign, player
+player1 = Player(o, 'o')
+player2 = Player(x, 'x')
 
-sign = 'x'
+def rotate_turns(player):
+    if player == player1:
+        return player2
+    return player1
+
 board = Board()
+current_player = player2
 while(board.has_got_winner() or board.is_full()):
-    sign, current_player = rotate_turns(current_player, sign)
+    current_player = rotate_turns(current_player)
     board.print_board()
         
     # take their input
-    box = input('Player {} select your box for {}: '.format(current_player,sign))
+    box = input('Player {} select your box for {}: '.format(current_player.name,current_player.sign))
     
     # update the board 
-    board.update_board(int(box[0]), int(box[1]), sign)
+    board.update_board(int(box[0]), int(box[1]), current_player.sign)
     
 board.check_for_result(current_player)
